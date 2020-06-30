@@ -58,8 +58,12 @@
                         <td >{{ $paciente->direccion }}</td>
                         <td>{{ $paciente->telefono }}</td>
                         <td> 
-                          <a href="#">✏️</a>  
-                          <a href="#">❌</a>
+                          <form method="POST" action="{{ url("paciente/{$paciente->id}") }}">
+                            @csrf
+                            @method('DELETE')
+                              <a href="{{ route('paciente.edit', [$paciente->id]) }}">✏️</a>  
+                              <button type="submit" style="border: none;background: #fff;">❌</button>
+                          </form>
                         </td>
                       </tr>
                     @endforeach

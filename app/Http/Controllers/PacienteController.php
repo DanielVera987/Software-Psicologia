@@ -92,7 +92,12 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paciente = Paciente::find($id);
+        if($paciente && Auth::user()->id == $paciente->user_id){
+            return view('paciente.edit', [
+                'paciente' => $paciente
+            ]);
+        }
     }
 
     /**
@@ -104,7 +109,29 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_id = Auth::user()->id;
+        $paciente = Paciente::find($id);
+
+        if($paciente->user_id == $user_id && $paciente){
+            $validate = $this->validate($request, [
+                'nombre' => 'required|string|max:255',
+                'apellido' => 'required|string|max:255',
+                'sexo' => 'required|string|max:255',
+                'edad' => 'required|integer|max:255',
+                'direccion' => 'required|string|max:255',
+                'fechaNac' => 'required|date',
+                'telefono' => 'required|numeric',
+                'notas' => 'max:255'
+            ]);
+
+            $data = $request->all();
+
+            $paciente->update($data);
+
+            return redirect()->route('paciente.index')->with('message', 'Paciente Actualizado');
+        }
+
+        
     }
 
     /**
@@ -115,6 +142,13 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $paciente = Paciente::find($id);
+        
+        if(Auth::user()->id == '10' && $paciente){
+            $paciente->delete();
+            return redirect()->route('paciente.index')->with('message', 'Paciente Eliminado 😀');
+        }else{
+            return redirect()->route('paciente.index')->with('message', 'No se pudo eliminar 😔, intentalo de nuevo');
+        }
     }
 }
