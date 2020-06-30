@@ -11,4 +11,8 @@ class Documento extends Model
     protected $fillable = [
        'paciente_id', 'path', 'nombre'
     ];
+
+    public function paciente(){
+        return $this->belongsTo('App\Models\Paciente');
+    }
 }

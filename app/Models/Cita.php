@@ -24,4 +24,8 @@ class Cita extends Model
        , 'fecha_inicio'
        , 'fecha_final'
     ];
+
+    public function paciente(){
+        return $this->belongsTo('App\Models\Paciente');
+    }
 }

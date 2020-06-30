@@ -23,7 +23,7 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * Formulario para crear uno nuevo
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -33,7 +33,7 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * Hace el guardado en la base de datos 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +44,7 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * Muestra un recurso por ID
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
+     * Formulario para editar
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -66,14 +66,21 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * Actualiza en la base de datos el recurso
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $this->validate($request, [
+            'nombre' => 'required|max:255',
+            'apellido' => 'required|max:255'
+        ]);
+
+        $data = $request->all();
+
+        
     }
 
     /**
