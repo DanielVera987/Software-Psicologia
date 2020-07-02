@@ -23,7 +23,7 @@ class CreatePacientesTable extends Migration
             $table->text('direccion');
             $table->string('fechaNac');
             $table->string('telefono');
-            $table->text('notas');
+            $table->text('notas')->isnull();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

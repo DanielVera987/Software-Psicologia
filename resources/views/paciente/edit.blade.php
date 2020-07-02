@@ -62,9 +62,9 @@
                     <label for="sexo" class="col-form-label text-muted">Sexo</label>
 
                     <select class="form-control @error('sexo') is-invalid @enderror" name="sexo" id="sexo">
-                      <option value="$paciente->sexo">{{$paciente->sexo}}</option>
-                      <option value="H">Hombre</option>
-                      <option value="M">Mujer</option>
+                      
+                        <option value="H" @if($paciente->sexo == 'H') selected  @endif>Hombre</option>
+                      <option value="M" @if($paciente->sexo == 'H') selected  @endif>Mujer</option>
                     </select>
 
                     @error('sexo')

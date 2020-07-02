@@ -47,13 +47,13 @@ class PacienteController extends Controller
             'direccion' => 'required|string|max:255',
             'fechaNac' => 'required|date',
             'telefono' => 'required|numeric',
-            'notas' => 'max:255'
+            'notas' => 'string|max:255'
         ]);
 
         $data = $request->all();
 
         if($data['notas'] || $data['notas'] == ''){
-            $notas = '';
+            $notas = ' ';
         }else{
             $notas = $data['notas'];
         }
@@ -113,6 +113,7 @@ class PacienteController extends Controller
         $paciente = Paciente::find($id);
 
         if($paciente->user_id == $user_id && $paciente){
+           
             $validate = $this->validate($request, [
                 'nombre' => 'required|string|max:255',
                 'apellido' => 'required|string|max:255',
@@ -121,12 +122,19 @@ class PacienteController extends Controller
                 'direccion' => 'required|string|max:255',
                 'fechaNac' => 'required|date',
                 'telefono' => 'required|numeric',
-                'notas' => 'max:255'
+                'notas' => 'string|nullable'
             ]);
 
             $data = $request->all();
-
-            $paciente->update($data);
+            $paciente->nombre = $data['nombre'];
+            $paciente->apellido = $data['apellido'];
+            $paciente->sexo = $data['sexo'];
+            $paciente->edad = $data['edad'];
+            $paciente->direccion = $data['direccion'];
+            $paciente->fechaNac = $data['fechaNac'];
+            $paciente->telefono = $data['telefono'];
+            $paciente->notas = ($data['notas']) ? $data['notas'] : ' ';
+            $paciente->update();
 
             return redirect()->route('paciente.index')->with('message', 'Paciente Actualizado');
         }
