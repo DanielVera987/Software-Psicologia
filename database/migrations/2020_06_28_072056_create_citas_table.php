@@ -22,6 +22,9 @@ class CreateCitasTable extends Migration
             $table->text('observaciones');
             $table->string('negacion');
             $table->string('aceptacion');
+            $table->string('distrajo');
+            $table->string('concentro');
+            $table->string('borro');
             $table->string('pagado');
             $table->string('finalizado');
             $table->string('medio_pago'); //Gratis, Efectivo, Terjeta

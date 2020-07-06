@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cita;
+use App\Models\Paciente;
 use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
@@ -34,7 +35,11 @@ class CitaController extends Controller
      */
     public function create()
     {
-        return view('cita.create');
+        $user = Auth::user();
+        $pacientes = Paciente::where('user_id', $user->id)->get();
+        return view('cita.create', [
+            'pacientes' => $pacientes
+        ]);
     }
 
     /**
@@ -45,7 +50,27 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $this->validate($request , [
+            'title' => 'required|string|max: 255',
+            'descripcion' => 'required|string|max:255',
+            'fecha_inicio' => 'required|date',
+            'fecha_final' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_final' => 'required',
+            'paciente' => 'required|integer',
+            'observaciones' => 'required|string|max:255',
+            'nego' => '',
+            'acepto' => '',
+            'distrajo' => '',
+            'concentro' => '',
+            'borro' => '',
+            'medio_pago' => 'string',
+            'pagado' => 'string',
+            'importe' => 'integer'
+        ]);
+
+        echo "hola";
+
     }
 
     /**
