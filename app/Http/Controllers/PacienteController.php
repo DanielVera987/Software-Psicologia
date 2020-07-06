@@ -152,7 +152,7 @@ class PacienteController extends Controller
     {
         $paciente = Paciente::find($id);
         
-        if(Auth::user()->id == '10' && $paciente){
+        if(Auth::user()->id == $paciente->user_id && $paciente){
             $paciente->delete();
             return redirect()->route('paciente.index')->with('message', 'Paciente Eliminado 😀');
         }else{

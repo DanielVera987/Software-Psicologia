@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Cita::class, function (Faker $faker) {
     return [
+        'user_id' => '1',
         'paciente_id' => $faker->randomDigitNot(5) ,
         'title' => $faker->title,
         'descripcion' => $faker->sentence(10),

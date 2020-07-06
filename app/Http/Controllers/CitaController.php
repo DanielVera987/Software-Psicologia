@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cita;
+use Illuminate\Support\Facades\Auth;
 
 class CitaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,12 @@ class CitaController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $citas = Cita::with('paciente')->where('user_id', $user->id)->get();
+        
+        return view('cita.index', [
+            'citas' => $citas
+        ]);
     }
 
     /**
@@ -23,7 +34,7 @@ class CitaController extends Controller
      */
     public function create()
     {
-        //
+        return view('cita.create');
     }
 
     /**

@@ -102,7 +102,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('cita.index') }}" class="nav-link
+                @if ($_SERVER["REQUEST_URI"] == '/cita' || $_SERVER["REQUEST_URI"] == '/cita/create')
+                  {{$styl = 'active'}}
+                @else
+                  {{$styl = ''}}
+                @endif">
                 <span class="nav-icon">👩🏼‍⚕️</span>
                 <p>
                   Consultas

@@ -15,10 +15,12 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('user_id'); 
             $table->unsignedInteger('paciente_id');
             $table->string('path');
             $table->string('nombre');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
