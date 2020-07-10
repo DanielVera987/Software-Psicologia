@@ -60,10 +60,10 @@
                         <td>{{ $cita->hora_inicio }}</td>
                         <td>{{ $cita->hora_final }}</td>
                         <td> 
-                          <form method="POST" action="">
+                          <form method="POST" action="{{ route('cita.destroy', [$cita->id]) }}">
                             @csrf
                             @method('DELETE')
-                              <a href="">✏️</a>  
+                              <a href="{{ route('cita.edit',[$cita->id]) }}">✏️</a>  
                               <button type="submit" style="border: none;background: #fff;">❌</button>
                           </form>
                         </td>

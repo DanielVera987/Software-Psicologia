@@ -45,7 +45,7 @@
                   </div>
                   <div class="col-md-12">
                     <label for="descripcion" class="col-form-label text-muted">Descripción</label>
-                    <textarea name="descripcion" id="descripcion" class="form-control @error('descripcion') is-invalid @enderror">{{ old('descripcion') }}</textarea>
+                    <textarea name="descripcion" id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" required>{{ old('descripcion') }}</textarea>
 
                     @error('descripcion')
                         <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <label for="fecha_inicio" class="col-form-label text-muted">Fecha Inicio</label>
-                        <input type="date"class="form-control  @error('fecha_inicio') is-invalid @enderror" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}" placeholder="">
+                        <input type="date"class="form-control  @error('fecha_inicio') is-invalid @enderror" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}" required placeholder="">
 
                         @error('fecha_inicio')
                             <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
 
                       <div class="col-md-6">
                         <label for="fecha_final" class="col-form-label text-muted">Fecha Final</label>
-                        <input type="date"class="form-control @error('fecha_final') is-invalid @enderror" name="fecha_final" id="fecha_final" value="{{ old('fecha_final') }}" placeholder="">
+                        <input type="date"class="form-control @error('fecha_final') is-invalid @enderror" name="fecha_final" id="fecha_final" value="{{ old('fecha_final') }}" required placeholder="">
 
                         @error('fecha_final')
                             <span class="invalid-feedback" role="alert">
@@ -86,7 +86,7 @@
                     <div class="row">
                       <div class="col-md-6">
                           <label for="hora_inicio" class="col-form-label text-muted">Hora Inicio</label>
-                          <input type="time"class="form-control @error('hora_inicio') is-invalid @enderror" name="hora_inicio" id="hora_inicio" placeholder="">
+                          <input type="time"class="form-control @error('hora_inicio') is-invalid @enderror" name="hora_inicio" value="{{ old('hora_inicio') }}" required id="hora_inicio" placeholder="">
     
                           @error('hora_inicio')
                               <span class="invalid-feedback" role="alert">
@@ -97,7 +97,7 @@
     
                       <div class="col-md-6">
                         <label for="hora_final" class="col-form-label text-muted">Hora Final</label>
-                          <input type="time" class="form-control @error('hora_final') is-invalid @enderror" name="hora_final" id="hora_final" placeholder="">
+                          <input type="time" class="form-control @error('hora_final') is-invalid @enderror" name="hora_final" id="hora_final" value="{{ old('hora_final') }}" required placeholder="">
     
                         @error('hora_final')
                             <span class="invalid-feedback" role="alert">
@@ -132,7 +132,7 @@
 
                   <div class="col-md-12">
                     <label for="observaciones" class="col-form-label text-muted">Observaciones</label>
-                    <textarea name="observaciones" id="observaciones" class="form-control @error('observaciones') is-invalid @enderror">{{ old('observaciones') }}</textarea>
+                    <textarea name="observaciones" id="observaciones" class="form-control @error('observaciones') is-invalid @enderror" required>{{ old('observaciones') }}</textarea>
 
                     @error('observaciones')
                         <span class="invalid-feedback" role="alert">
@@ -153,8 +153,8 @@
                       <tr>
                         <td><span for="nego" class="col-form-label text-muted">Se nego:&nbsp;&nbsp; </span></td>
                         <td>
-                          <input type="radio" name="nego[]" class="@error('nego') is-invalid @enderror" id="nego" value="Si">Si&nbsp;&nbsp;
-                          <input type="radio" name="nego[]" class="@error('nego') is-invalid @enderror" id="nego" value="No">No
+                          <input type="radio" name="nego[]" class=" @error('nego') is-invalid @enderror" id="nego" value="Si">Si&nbsp;&nbsp;
+                          <input type="radio" name="nego[]" class=" @error('nego') is-invalid @enderror" id="nego" value="No">No
                           @error('nego')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -165,8 +165,8 @@
                       <tr>
                         <td><span for="acepto" class="col-form-label text-muted">Acepto la actividad:&nbsp;&nbsp; </span> </span></td>
                         <td>
-                          <input type="radio" name="acepto[]" class="@error('acepto') is-invalid @enderror" id="acepto" value="Si">Si&nbsp;&nbsp;
-                          <input type="radio" name="acepto[]" class="@error('acepto') is-invalid @enderror" id="acepto" value="No">No
+                          <input type="radio" name="acepto[]" class=" @error('acepto') is-invalid @enderror" id="acepto" value="Si">Si&nbsp;&nbsp;
+                          <input type="radio" name="acepto[]" class=" @error('acepto') is-invalid @enderror" id="acepto" value="No">No
                           @error('acepto')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -177,8 +177,8 @@
                       <tr>
                         <td><span for="distrajo" class="col-form-label text-muted">Se distrajo:&nbsp;&nbsp; </span> </span></td>
                         <td>
-                          <input type="radio" name="distrajo[]" class="@error('distrajo') is-invalid @enderror" id="distrajo" value="Si">Si&nbsp;&nbsp;
-                          <input type="radio" name="distrajo[]" class="@error('distrajo') is-invalid @enderror" id="distrajo" value="No">No
+                          <input type="radio" name="distrajo[]" class=" @error('distrajo') is-invalid @enderror" id="distrajo" value="Si">Si&nbsp;&nbsp;
+                          <input type="radio" name="distrajo[]" class=" @error('distrajo') is-invalid @enderror" id="distrajo" value="No">No
                           @error('distrajo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -189,8 +189,8 @@
                       <tr>
                         <td><span for="concentro" class="col-form-label text-muted">Se concentro:&nbsp;&nbsp; </span> </span></td>
                         <td>
-                          <input type="radio" name="concentro[]" class="@error('concentro') is-invalid @enderror" id="concentro" value="Si">Si&nbsp;&nbsp;
-                          <input type="radio" name="concentro[]" class="@error('concentro') is-invalid @enderror" id="concentro" value="No">No
+                          <input type="radio" name="concentro[]" class=" @error('concentro') is-invalid @enderror" id="concentro" value="Si">Si&nbsp;&nbsp;
+                          <input type="radio" name="concentro[]" class=" @error('concentro') is-invalid @enderror" id="concentro" value="No">No
                           @error('concentro')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -201,8 +201,8 @@
                       <tr>
                         <td><span for="borro" class="col-form-label text-muted">Borro alguna parte:&nbsp;&nbsp; </span> </span></td>
                         <td>
-                          <input type="radio" name="borro[]" class="@error('borro') is-invalid @enderror" id="borro" value="Si">Si&nbsp;&nbsp;
-                          <input type="radio" name="borro[]" class="@error('borro') is-invalid @enderror" id="borro" value="No">No
+                          <input type="radio" name="borro[]" class=" @error('borro') is-invalid @enderror" id="borro" value="Si">Si&nbsp;&nbsp;
+                          <input type="radio" name="borro[]" class=" @error('borro') is-invalid @enderror" id="borro" value="No">No
                           @error('borro')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -244,7 +244,7 @@
                         <div class="form-group">
                             <br><br>
                             <div class="custom-control custom-checkbox">
-                              <input type="checkbox" name="pagado" id="pagado" class="custom-control-input @error('pagado') is-invalid @enderror" id="pagado">
+                              <input type="checkbox" name="pagado" id="pagado" class="custom-control-input @error('pagado') is-invalid @enderror" value="Si" id="pagado">
                               <label class="custom-control-label" for="pagado">Pagado</label>
                             </div>
                         </div>
@@ -263,7 +263,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                           </div>
-                          <input type="text" name="importe" class="form-control @error('importe') is-invalid @enderror" id="importe" aria-label="Amount (to the nearest dollar)" placeholder="Importe">
+                          <input type="text" name="importe" class="form-control @error('importe') is-invalid @enderror" id="importe" value="{{ old('importe') }}" aria-label="Amount (to the nearest dollar)" placeholder="Importe">
                           <div class="input-group-append">
                             <span class="input-group-text">.00</span>
                           </div>
@@ -279,7 +279,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                             <div class="custom-control custom-checkbox mt-1">
-                              <input type="checkbox" name="finalizado" class="custom-control-input @error('finalizado') is-invalid @enderror" id="finalizado">
+                              <input type="checkbox" name="finalizado" class="custom-control-input @error('finalizado') is-invalid @enderror" value="Si" id="finalizado">
                               <label class="custom-control-label" for="finalizado">Finalizado</label>
                             </div>
                         </div>

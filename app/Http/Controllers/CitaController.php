@@ -50,27 +50,36 @@ class CitaController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $this->validate($request , [
-            'title' => 'required|string|max: 255',
-            'descripcion' => 'required|string|max:255',
-            'fecha_inicio' => 'required|date',
-            'fecha_final' => 'required|date',
-            'hora_inicio' => 'required',
-            'hora_final' => 'required',
-            'paciente' => 'required|integer',
-            'observaciones' => 'required|string|max:255',
-            'nego' => '',
-            'acepto' => '',
-            'distrajo' => '',
-            'concentro' => '',
-            'borro' => '',
-            'medio_pago' => 'string',
-            'pagado' => 'string',
-            'importe' => 'integer'
-        ]);
 
-        echo "hola";
+        $this->dateValidate($request);
 
+        $data = $request->all();
+
+        $newCita = new Cita();
+        $newCita->user_id = Auth::user()->id;
+        $newCita->paciente_id = $data['paciente_id'];
+        $newCita->title = $data['title'];
+        $newCita->descripcion = $data['descripcion'];
+        $newCita->observaciones = $data['observaciones'];
+        $newCita->negacion = ($data['nego']) ? $data['nego'][0] : '';
+        $newCita->aceptacion = ($data['acepto']) ? $data['acepto'][0] : '';
+        $newCita->distrajo = ($data['distrajo']) ? $data['distrajo'][0] : '';
+        $newCita->concentro = ($data['concentro']) ? $data['concentro'][0] : '';
+        $newCita->borro = ($data['borro']) ? $data['borro'][0] : '';
+        $newCita->pagado = ($data['pagado']) ? $data['pagado'] : 'No';
+        $newCita->finalizado = ($data['finalizado']) ? $data['finalizado'] : 'No';
+        $newCita->medio_pago = $data['medio_pago'];
+        $newCita->importe = $data['importe'];
+        $newCita->hora_inicio = $data['hora_inicio'];
+        $newCita->hora_final = $data['hora_final'];
+        $newCita->fecha_inicio = $data['fecha_inicio'];
+        $newCita->fecha_final = $data['fecha_final'];
+        $new = $newCita->save();
+
+        $msj = '';
+        ($new) ? $msj = "Cita guardada" : $msj = "La cita no se pudo crear :(";
+
+        return redirect()->route('cita.index')->with('message', $msj);
     }
 
     /**
@@ -92,7 +101,22 @@ class CitaController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(is_numeric($id))
+        {
+            $user = Auth::user();
+            $getCita = Cita::with('paciente')->find($id);
+            $getPacientes = Paciente::where('user_id', $user->id)->get();
+
+            if($getCita)
+            {
+                return view('cita.edit', [
+                    'getCita' => $getCita,
+                    'pacientes' => $getPacientes
+                ]);
+            }
+        }
+
+        return redirect()->route('cita.index')->with('message', "No exite la cita");
     }
 
     /**
@@ -104,7 +128,25 @@ class CitaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(is_numeric($id)){
+
+            $this->dateValidate($request);
+
+            $data = $request->all();
+            $update = Cita::find($id);
+
+            if($update){
+                unset($update->user_id);
+                $update->update($data);
+                $msj = "Cita actualizada";
+            }else{
+                $msj = "No existe la cita";
+            }
+        }else{
+            $msj = "No existe la cita";
+        }
+
+        return redirect()->route('cita.index')->with('message', $msj);
     }
 
     /**
@@ -115,6 +157,43 @@ class CitaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(is_numeric($id))
+        {
+            $cita = Cita::find($id);
+
+            if($cita)
+            {
+                $cita->delete();
+                $msj = "Cita eliminada";
+                return redirect()->route('cita.index')->with('message', "Cita eliminada");
+            }
+        }
+
+        return redirect()->route('cita.index')->with('message', "La cita no exite");
+    }
+
+    private function dateValidate($request)
+    {
+        $validate = $this->validate($request , [
+            'title' => 'required|string|max: 255',
+            'descripcion' => 'required|string|max:255',
+            'fecha_inicio' => 'required|date',
+            'fecha_final' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_final' => 'required',
+            'paciente_id' => 'required|integer',
+            'observaciones' => 'required|string|max:255',
+            'nego' => 'nullable',
+            'acepto' => 'nullable',
+            'distrajo' => 'nullable',
+            'concentro' => 'nullable',
+            'borro' => 'nullable',
+            'medio_pago' => 'required|string',
+            'pagado' => 'string|nullable',
+            'importe' => 'integer|nullable',
+            'finalizado' => 'string|nullable'
+        ]);
+
+        return true;
     }
 }

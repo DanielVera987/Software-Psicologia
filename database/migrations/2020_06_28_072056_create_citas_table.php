@@ -20,13 +20,13 @@ class CreateCitasTable extends Migration
             $table->string('title');
             $table->text('descripcion');
             $table->text('observaciones');
-            $table->string('negacion');
-            $table->string('aceptacion');
-            $table->string('distrajo');
-            $table->string('concentro');
-            $table->string('borro');
-            $table->string('pagado');
-            $table->string('finalizado');
+            $table->string('negacion')->isnull();
+            $table->string('aceptacion')->isnull();
+            $table->string('distrajo')->isnull();
+            $table->string('concentro')->isnull();
+            $table->string('borro')->isnull();
+            $table->string('pagado')->isnull();
+            $table->string('finalizado')->isnull();
             $table->string('medio_pago'); //Gratis, Efectivo, Terjeta
             $table->string('importe');
             $table->string('hora_inicio');
