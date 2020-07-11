@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documento;
+use App\Models\Paciente;
 use Illuminate\Support\Facades\Auth;
-use League\CommonMark\Block\Element\Document;
 
 class DocumentoController extends Controller
 {
@@ -36,7 +36,11 @@ class DocumentoController extends Controller
      */
     public function create()
     {
-        //
+        $pacientes = Paciente::where('user_id', Auth::user()->id)->get();
+
+        return view('documento.create', [
+            'pacientes' => $pacientes
+        ]);
     }
 
     /**
@@ -47,7 +51,25 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $this->validate($request, [
+            'paciente_id' => 'required|integer',
+            'nombre' => 'required|string'
+        ]);
+
+        if($validate){
+            $file = $request->file('path');
+            $nameOriginal = $file->getClientOriginalName();
+            \Storage::disk('local')->put($nameOriginal, \File::get($nameOriginal));
+
+            $data = $request->all();
+            $documento = new Documento;
+            $documento->user_id = Auth::user()->id;
+            $documento->paciente_id = $data['paciente_id'];
+            $documento->path = $nameOriginal;
+            $documento->save();
+
+            return redirect()->route('documentos.index')->with('message', 'documento creado');
+        }
     }
 
     /**

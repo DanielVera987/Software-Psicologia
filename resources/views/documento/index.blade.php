@@ -31,7 +31,7 @@
           <div class="card card-primary card-outline">
             <div class="card-body">
               <h3 class="float-left">Documentos  👨‍👩‍👧‍👦</h3>
-              <a class="btn btn-primary btn-sm float-right" href="{{ route('cita.create') }}" role="button">Nuevo Documento</a>
+              <a class="btn btn-primary btn-sm float-right" href="{{ route('documentos.create') }}" role="button">Nuevo Documento</a>
               <div class="table-responsive">
                 @if(session()->has('message'))
                   <div class="alert alert-success">

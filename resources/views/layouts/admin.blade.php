@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
   <link rel="stylesheet" href="/css/app.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -115,7 +116,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('documentos.index') }}" class="nav-link
+              @if ($_SERVER["REQUEST_URI"] == '/documentos' || $_SERVER["REQUEST_URI"] == '/documentos/create')
+                {{$styl = 'active'}}
+              @else
+                {{$styl = ''}}
+              @endif">
                 <span class="nav-icon">📁</span>
                 <p>
                   Documentos
