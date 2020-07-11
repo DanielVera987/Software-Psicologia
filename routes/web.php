@@ -19,3 +19,4 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('paciente', 'PacienteController');
 Route::resource('cita', 'CitaController');
+Route::resource('documentos', 'DocumentoController');
