@@ -60,8 +60,7 @@
                         <td> 
                           <form method="POST" action="{{ route('documentos.destroy', [$documento->id]) }}">
                             @csrf
-                            @method('DELETE')
-                              <a href="{{ route('documentos.edit',[$documento->id]) }}">✏️</a>  
+                            @method('DELETE') 
                               <button type="submit" style="border: none;background: #fff;">❌</button>
                           </form>
                         </td>

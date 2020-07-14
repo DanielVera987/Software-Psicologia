@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Documento;
 use App\Models\Paciente;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentoController extends Controller
 {
@@ -53,18 +54,20 @@ class DocumentoController extends Controller
     {
         $validate = $this->validate($request, [
             'paciente_id' => 'required|integer',
-            'nombre' => 'required|string'
+            'nombre' => 'required|string',
+            'path' => 'required|mimes:jpg,jpeg,gif,doc,ppt,pdf,png'
         ]);
 
         if($validate){
             $file = $request->file('path');
-            $nameOriginal = $file->getClientOriginalName();
-            \Storage::disk('local')->put($nameOriginal, \File::get($nameOriginal));
+            $nameOriginal = time().$file->getClientOriginalName();
+            \Storage::disk('archivos')->put($nameOriginal, \File::get($file));
 
             $data = $request->all();
             $documento = new Documento;
             $documento->user_id = Auth::user()->id;
             $documento->paciente_id = $data['paciente_id'];
+            $documento->nombre = $data['nombre'];
             $documento->path = $nameOriginal;
             $documento->save();
 
@@ -119,6 +122,13 @@ class DocumentoController extends Controller
             $documento = Documento::with('paciente')->where('user_id', Auth::user()->id)->find($id);
             if($documento)
             {
+                $isExists = Storage::disk('archivos')->exists($documento->path);
+
+                //Borrar el archivo
+                if($isExists){
+                    Storage::disk('archivos')->delete($documento->path);
+                }
+
                 $documento->delete();
                 return redirect()->route('documentos.index')->with('message', 'Documento eliminado');
             }
