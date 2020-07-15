@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->middleware(['auth']);
 
+Route::get('edit', 'UserController@edit')->name('user.edit');
+Route::put('update/{id}','UserController@update')->name('user.update');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('paciente', 'PacienteController');

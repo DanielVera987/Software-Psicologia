@@ -27,48 +27,54 @@
           <div class="row">
 
             <div class="col-lg-4">
-              <div class="card card-primary card-outline">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h2><strong>{{ $numPacientes }}</strong></h2><h5 class="card-title">Pacientes </h5>
-                    </div>
-                    <div class="col-md-6">
-                      <div style="font-size: 45px;">👨‍👩‍👧‍👦</div>
+              <a href="{{ route('paciente.index') }}">
+                <div class="card card-primary card-outline">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h2><strong>{{ $numPacientes }}</strong></h2><h5 class="card-title">Pacientes </h5>
+                      </div>
+                      <div class="col-md-6">
+                        <div style="font-size: 45px;">👨‍👩‍👧‍👦</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div><!-- /.card -->
+                </div><!-- /.card -->
+              </a>
             </div>
 
             <div class="col-lg-4">
-              <div class="card card-primary card-outline">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h2><strong>{{ $numCitas }}</strong></h2><h5 class="card-title">Citas </h5>
-                    </div>
-                    <div class="col-md-6">
-                      <div style="font-size: 45px;">📋</div>
+              <a href="{{ route('cita.index') }}">
+                <div class="card card-primary card-outline">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h2><strong>{{ $numCitas }}</strong></h2><h5 class="card-title">Citas </h5>
+                      </div>
+                      <div class="col-md-6">
+                        <div style="font-size: 45px;">📋</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div><!-- /.card -->
+                </div><!-- /.card -->
+              </a>
             </div>
 
             <div class="col-lg-4">
-              <div class="card card-primary card-outline">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h2><strong>{{ $numDocs }}</strong></h2><h5 class="card-title">Documentos </h5>
-                    </div>
-                    <div class="col-md-6">
-                      <div style="font-size: 45px;">📁</div>
+              <a href="{{ route('documentos.index') }}">
+                <div class="card card-primary card-outline">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h2><strong>{{ $numDocs }}</strong></h2><h5 class="card-title">Documentos </h5>
+                      </div>
+                      <div class="col-md-6">
+                        <div style="font-size: 45px;">📁</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div><!-- /.card -->
+                </div><!-- /.card -->
+              </a>
             </div>
           </div><!-- /.row -->
 

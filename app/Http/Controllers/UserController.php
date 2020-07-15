@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -11,57 +12,15 @@ class UserController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * Formulario para crear uno nuevo
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * Hace el guardado en la base de datos 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     * Muestra un recurso por ID
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      * Formulario para editar
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('user.edit');
     }
 
     /**
@@ -74,23 +33,30 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $this->validate($request, [
-            'nombre' => 'required|max:255',
-            'apellido' => 'required|max:255'
+            'nombre' => 'string|required',
+            'apellido' => 'string|required',
+            'telefono' => 'required',
+            'email' => 'email|required'
         ]);
 
-        $data = $request->all();
+        $user = Auth::user();
+        $datos = $request->all();
+        if($id == $user->id)
+        {
+            $user = User::find($user->id);
 
-        
-    }
+            if($user)
+            {
+                $user->nombre = $datos['nombre'];
+                $user->apellido = $datos['apellido'];
+                $user->telefono = $datos['telefono'];
+                $user->email = $datos['email'];
+                $user->save();
+                
+                return redirect()->route('user.edit')->with('message', 'Todo actualizado');
+            }
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('user.edit')->with('message', 'Error al actualizar usuario');
     }
 }

@@ -31,17 +31,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </li>
       </ul>
 
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
     </nav>
     <!-- /.navbar -->
 
@@ -64,7 +53,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <img src="../img/usuario.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</a>
+            <a href="{{ route('user.edit') }}" class="d-block">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</a>
+            <small><a href="{{ route('logout') }}">Salir</a></small>
           </div>
         </div>
 
@@ -129,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('user.edit') }}" class="nav-link">
                 <span class="nav-icon" >⚙️</span>
                 <p>
                   Ajustes
