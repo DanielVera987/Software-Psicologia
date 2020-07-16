@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>SoftPsico</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,23 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        body{
+            background: #A5E8F6;
+        }
+        #login-row{
+            margin-top: 100px;
+        }
+        .input{
+            border-bottom: 3px solid #FB4E8A;
+        }
+        .btn{
+            background: #FB4E8A;
+            color: #ffffff;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

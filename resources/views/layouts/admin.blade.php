@@ -17,6 +17,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   
   <link rel="stylesheet" href="/css/app.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    .sidebar-dark-primary{
+      background-color: #FE669B;
+    }
+    .texto-blanco{
+      color: white;
+    }
+    .navbar-light{
+      background-color: #FE669B;
+    }
+    .card-primary.card-outline{
+      border-top: 3px solid #E91E63;
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -39,10 +53,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index.html" class="brand-link">
-        <img src="../img/logo.png" class="brand-image img-circle elevation-3"
-          style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <a href="index.html" class="brand-link" style="border-bottom: 0px;">
+        <h3 class="font-weight-light text-center">SoftPsico</h3>
       </a>
 
       <!-- Sidebar -->
@@ -53,8 +65,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <img src="../img/usuario.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="{{ route('user.edit') }}" class="d-block">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</a>
-            <small><a href="{{ route('logout') }}">Salir</a></small>
+            <a href="{{ route('user.edit') }}" class="d-block" style="color: white;">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</a>
+            <a href="{{ route('logout') }}" style="color: white;">Salir</a>
           </div>
         </div>
 
@@ -65,63 +77,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
               
-              <a href="{{ route('home') }}" class="nav-link 
-                    @if ($_SERVER["REQUEST_URI"] == '/home')
-                      {{ $style = 'active'}}
-                    @else
-                      {{$style = ''}}
-                    @endif
-                  ">
-                <span class="nav-icon">📊</span>
-                <p>
+              <a href="{{ route('home') }}" class="nav-link">
+                <span class="nav-icon">📊&nbsp;&nbsp;&nbsp;</span>
+                <p class="texto-blanco">
                    Control de Mando
                 </p>
               </a>
             </li>
             <li class="nav-item">
               
-              <a href="{{ route('paciente.index') }}" class="nav-link 
-                    @if ($_SERVER["REQUEST_URI"] == '/paciente' || $_SERVER["REQUEST_URI"] == '/paciente/create')
-                      {{$styl = 'active'}}
-                    @else
-                      {{$styl = ''}}
-                    @endif">
+              <a href="{{ route('paciente.index') }}" class="nav-link">
                 <span class="nav-icon">👨‍👩‍👧‍👦</span>
-                <p>
+                <p class="texto-blanco">
                   Pacientes
                 </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('cita.index') }}" class="nav-link
-                @if ($_SERVER["REQUEST_URI"] == '/cita' || $_SERVER["REQUEST_URI"] == '/cita/create')
-                  {{$styl = 'active'}}
-                @else
-                  {{$styl = ''}}
-                @endif">
-                <span class="nav-icon">👩🏼‍⚕️</span>
-                <p>
+              <a href="{{ route('cita.index') }}" class="nav-link">
+                <span class="nav-icon">👩🏼‍⚕️&nbsp;&nbsp;&nbsp;</span>
+                <p class="texto-blanco">
                   Consultas
                 </p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('documentos.index') }}" class="nav-link
-              @if ($_SERVER["REQUEST_URI"] == '/documentos' || $_SERVER["REQUEST_URI"] == '/documentos/create')
-                {{$styl = 'active'}}
-              @else
-                {{$styl = ''}}
-              @endif">
-                <span class="nav-icon">📁</span>
-                <p>
+              <a href="{{ route('documentos.index') }}" class="nav-link">
+                <span class="nav-icon">📁&nbsp;&nbsp;&nbsp;</span>
+                <p class="texto-blanco">
                   Documentos
                 </p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{ route('user.edit') }}" class="nav-link">
-                <span class="nav-icon" >⚙️</span>
-                <p>
+                <span class="nav-icon" >⚙️&nbsp;&nbsp;&nbsp;</span>
+                <p class="texto-blanco">
                   Ajustes
                 </p>
               </a>
@@ -144,7 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         Anything you want
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+      <strong>Copyright &copy; 2020 <a href="http://danielvera.com.mx">Daniel Vera</a>.</strong> All rights reserved.
     </footer>
   </div>
   <!-- ./wrapper -->
