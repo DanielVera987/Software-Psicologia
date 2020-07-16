@@ -44,7 +44,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
-
+      <ul class="navbar-nav ml-auto">
+        <li><a href="{{ route('logout') }}" style="color: white;">Salir</a></li>
+      </ul>
     </nav>
     <!-- /.navbar -->
 
@@ -66,7 +68,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           <div class="info">
             <a href="{{ route('user.edit') }}" class="d-block" style="color: white;">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</a>
-            <a href="{{ route('logout') }}" style="color: white;">Salir</a>
           </div>
         </div>
 
