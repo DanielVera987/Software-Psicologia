@@ -1,11 +1,11 @@
 # ⚕️ Sistema Web Psicologia Laravel 7
 
 
-### Instalación 🚀
+## Instalación 🚀
 
 * Tener instalado Git en tu computadora
 * Tener instalado Composer
-* git clone https://github.com/DanielVera987/BaseLaravelAdmin.git
+* git clone https://github.com/DanielVera987/Software-Psicologia
 * Ejecutar composer install
 * Cambiar el nombre del archivo .env.example por .env
 * Generamos nuestra key, php artisan key:generate
@@ -14,6 +14,10 @@
 * Ejecutar php artisan serve
 * email: admin@admin.com | password: 12345678
 * Listo!!!
+
+## Ejemplo 🖼️
+
+![Screenshot](screen.jpeg)
 
 ## Licencia 📄
 
