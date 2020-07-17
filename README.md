@@ -3,6 +3,17 @@
 
 ### Instalación 🚀
 
+* Tener instalado Git en tu computadora
+* Tener instalado Composer
+* git clone https://github.com/DanielVera987/BaseLaravelAdmin.git
+* Ejecutar composer install
+* Cambiar el nombre del archivo .env.example por .env
+* Generamos nuestra key, php artisan key:generate
+* Creamos nuestra base de datos y la configuramos en .env
+* Ejecutar php artisan migrate:fresh --seed
+* Ejecutar php artisan serve
+* email: admin@admin.com | password: 12345678
+* Listo!!!
 
 ## Licencia 📄
 
